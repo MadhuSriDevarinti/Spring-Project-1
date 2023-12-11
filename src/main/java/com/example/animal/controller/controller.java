@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.animal.dao.Animal;
 import com.example.animal.service.service;
 
-@RestController
+@RestController  // controller class automatically serializes return objects into HttpResponse 
 public class controller {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class controller {
 		this.ServiceClass = ServiceClass;
 	}
 	
-	@GetMapping("/getId/{id}")
+	@GetMapping("/getId/{id}")  // used for mapping http get req 
 	public Map<String,Object> getId(@PathVariable(value="id") int id) {
 		return ServiceClass.getId(id);
 	}
@@ -39,7 +39,7 @@ public class controller {
 		ServiceClass.Insert(animal);
 	}
 	
-	@PostMapping("/Insert")
+	@PostMapping("/Insert") // allows you to receive and process data submitted through post req
 	public int insertanimal(@RequestBody Animal a) {
 		 return ServiceClass.Insert(a);
 	} 
@@ -56,7 +56,7 @@ public class controller {
 		return ServiceClass.Delete(animal);
 	}
 	
-	@DeleteMapping("/Delete/{id}")
+	@DeleteMapping("/Delete/{id}")  // map http delete req onto specific handler methods
 	public int Delete1(Animal animal) {
 		return ServiceClass.Delete(animal);
 	}
