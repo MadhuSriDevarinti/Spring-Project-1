@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository // data access object to perform jdbc operations
 public class dao {
 	
-	@Autowired
+	@Autowired // inject req dependencies and helps to manage dependencies between diff components
 	
 	private final JdbcTemplate jdbcTemplate;
 	public dao(JdbcTemplate jdbcTemplate) {
@@ -18,6 +18,8 @@ public class dao {
 	}
 	
 	public Map<String,Object> getId(int id){
+		// parameterizing the query to use key-value pair where key is the query i.e string and
+		//object is the actual value to used for executing query
 		String query = "select * from animal where id=?";
 		return jdbcTemplate.queryForMap(query,id);
 	}
